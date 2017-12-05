@@ -1,0 +1,20 @@
+<div class="app-content">
+    <div class="group">
+
+        <form role="form">
+            <br>
+            <mat-form-field style="width: 100%">
+                <input matInput placeholder="Register ID" [(ngModel)]="registerID" type="password" name="registerID" />
+                <button mat-button *ngIf="registerID" matSuffix mat-icon-button aria-label="Clear" (click)="registerID=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <br>
+            <br>
+            <button mat-raised-button color="primary" type="submit" style="width: 100%">REGISTER CLIENT</button>
+            <span id="err">
+                <small>{{errorMsg}}</small>
+            </span>
+        </form>
+    </div>
+</div>
