@@ -18,6 +18,10 @@ export class MonitorComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.awesome(this.myList);
+    }
+
+    awesome(arr: Array<string>) {
         var video = document.getElementById('video');
         var canvas = <HTMLCanvasElement>document.getElementById('canvas');
         var context = canvas.getContext('2d');
@@ -25,14 +29,12 @@ export class MonitorComponent implements OnInit {
         const o = new tracking.ObjectTracker(list);
 
         var tracker = tracking.track(video, o, { camera: true });
-
         tracker.run();
 
-        console.log(tracker)
         o.on('track', function (event) {
             context.clearRect(0, 0, canvas.width, canvas.height);
             event.data.forEach(function (rect) {
-                this.myList.push(JSON.stringify(rect));
+                arr.push(JSON.stringify(rect));
                 console.log(JSON.stringify(rect));
                 context.strokeStyle = '#a64ceb';
                 context.strokeRect(rect.x, rect.y, rect.width, rect.height);
