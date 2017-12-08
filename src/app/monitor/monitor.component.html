@@ -1,22 +1,6 @@
-<div class="demo-grid-list">
-    <mat-card style="width:19%;float:left">
-        <mat-card-title>Basic grid list</mat-card-title>
-        <mat-card-content class="demo-basic-list">
-            <mat-grid-list cols="1" rowHeight="10px">
-                <mat-grid-tile *ngFor="let a of myList"> {{a}} </mat-grid-tile>
-            </mat-grid-list>
-        </mat-card-content>
-    </mat-card>
-    <mat-card style="width:75%;float: right">
-        <mat-card-title>Basic grid list</mat-card-title>
-        <mat-card-content class="demo-basic-list">
-            <mat-grid-list cols="2" rowHeight="400px">
-                <mat-grid-tile>
-                    <video id="video" preload autoplay loop muted></video>
-                    <canvas id="canvas"></canvas>
-                </mat-grid-tile>
-                <mat-grid-tile> Two </mat-grid-tile>
-            </mat-grid-list>
-        </mat-card-content>
-    </mat-card>
+<div>
+    <div>
+        <video id="video" width="320" height="240" preload autoplay loop muted></video>
+        <canvas id="canvas" width="320" height="240"></canvas>
+    </div>
 </div>

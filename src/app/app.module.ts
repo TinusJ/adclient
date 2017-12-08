@@ -16,13 +16,14 @@ import {
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { MonitorComponent } from "./monitor/monitor.component"
+import { MonitorComponent } from './monitor/monitor.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'monitor', component: MonitorComponent },
-
+  { path: 'dash', component: DashboardComponent },
 ];
 
 
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    MonitorComponent
+    MonitorComponent,
+    DashboardComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

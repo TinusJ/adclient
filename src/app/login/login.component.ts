@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     }
 
     goToMonitor() {
-        this.router.navigate(['monitor']);
+        this.router.navigate(['dash']);
     }
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import 'tracking';
 import 'tracking/build/data/face';
-import 'tracking/build/data/mouth';
-import 'tracking/build/data/eye';
+//import 'tracking/build/data/mouth';
+//import 'tracking/build/data/eye';
 
 @Component({
     selector: 'monitor',
@@ -11,31 +11,31 @@ import 'tracking/build/data/eye';
 })
 export class MonitorComponent implements OnInit {
 
-    public myList: Array<string> = [];
 
-    constructor() {
-        this.myList = [];
-    }
+    trackingTask: any;
+    trackingList: Array<string> = ["face"];// "mouth", "eye"
+
+
+    constructor() { }
 
     ngOnInit() {
-        this.awesome(this.myList);
+        this.startTracking();
     }
 
-    awesome(arr: Array<string>) {
-        var video = document.getElementById('video');
-        var canvas = <HTMLCanvasElement>document.getElementById('canvas');
-        var context = canvas.getContext('2d');
-        var list = ["face", "mouth", "eye"];
-        const o = new tracking.ObjectTracker(list);
+    startTracking() {
+        let video = document.getElementById('video');
+        let canvas = <HTMLCanvasElement>document.getElementById('canvas');
+        let context = canvas.getContext('2d');
+        let c = new tracking.ObjectTracker(this.trackingList);
 
-        var tracker = tracking.track(video, o, { camera: true });
-        tracker.run();
+        this.trackingTask = tracking.track(video, c, { camera: true });
+        this.trackingTask.run();
 
-        o.on('track', function (event) {
+        c.on('track', function (event) {
             context.clearRect(0, 0, canvas.width, canvas.height);
+
             event.data.forEach(function (rect) {
-                arr.push(JSON.stringify(rect));
-                console.log(JSON.stringify(rect));
+                console.log('PICKED UP [x: ' + rect.x + 'px ' + rect.x + rect.width + 5, rect.y + 11 + "]");
                 context.strokeStyle = '#a64ceb';
                 context.strokeRect(rect.x, rect.y, rect.width, rect.height);
                 context.font = '11px Helvetica';
@@ -45,6 +45,12 @@ export class MonitorComponent implements OnInit {
             });
         });
     }
+
+    stopTracking() {
+        this.trackingTask.stop();
+    }
+
+
 
 
 
